@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=60">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=Noto+Kufi+Arabic:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1476,6 +1476,154 @@ input, textarea { cursor: none; }
   .section-heading { font-size: clamp(28px, 8vw, 36px); }
   .brands-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ========================================
+   RTL & ARABIC LANGUAGE SUPPORT
+   ======================================== */
+[dir="rtl"] {
+  --font-body: 'Noto Kufi Arabic', 'Outfit', -apple-system, sans-serif;
+  --font-heading: 'Noto Kufi Arabic', 'Playfair Display', Georgia, serif;
+}
+[dir="rtl"] body { font-family: var(--font-body); }
+[dir="rtl"] .nav-logo-main,
+[dir="rtl"] .nav-logo-sub,
+[dir="rtl"] .section-heading,
+[dir="rtl"] .hero h1,
+[dir="rtl"] .footer-logo,
+[dir="rtl"] .footer-sub,
+[dir="rtl"] .project-card h3,
+[dir="rtl"] .showroom-content h2,
+[dir="rtl"] .service-card h3,
+[dir="rtl"] .contact-info h3,
+[dir="rtl"] .stat-num,
+[dir="rtl"] .marquee-item,
+[dir="rtl"] .mobile-nav a {
+  font-family: var(--font-heading);
+}
+[dir="rtl"] .gold-label,
+[dir="rtl"] .btn,
+[dir="rtl"] .nav-links a,
+[dir="rtl"] .hero-region,
+[dir="rtl"] .hero-sub,
+[dir="rtl"] .about-text p,
+[dir="rtl"] .service-card p,
+[dir="rtl"] .brands-sub,
+[dir="rtl"] .brands-count,
+[dir="rtl"] .trust-label,
+[dir="rtl"] .stat-label,
+[dir="rtl"] .interest-label,
+[dir="rtl"] .footer-links a,
+[dir="rtl"] .footer-region,
+[dir="rtl"] .footer-copy,
+[dir="rtl"] .scroll-indicator span,
+[dir="rtl"] .showroom-content p,
+[dir="rtl"] .contact-office p,
+[dir="rtl"] .checkbox-group label,
+[dir="rtl"] .contact-form input,
+[dir="rtl"] .contact-form textarea,
+[dir="rtl"] .nav-logo-tagline,
+[dir="rtl"] .project-card p,
+[dir="rtl"] .lang-toggle,
+[dir="rtl"] .brand-cell {
+  font-family: var(--font-body);
+}
+
+/* Gold label line flips to right */
+[dir="rtl"] .gold-label { direction: rtl; }
+[dir="rtl"] .gold-label::before { order: -1; }
+
+/* Hero content alignment */
+[dir="rtl"] .hero-content { text-align: right; }
+[dir="rtl"] .hero-line,
+[dir="rtl"] .hero-line-bottom,
+[dir="rtl"] .hero-h1-divider {
+  transform-origin: right;
+  margin-left: auto;
+  margin-right: 0;
+}
+[dir="rtl"] .hero.loaded .hero-line,
+[dir="rtl"] .hero.loaded .hero-line-bottom,
+[dir="rtl"] .hero.loaded .hero-h1-divider {
+  transform-origin: right;
+}
+[dir="rtl"] .hero-buttons {
+  justify-content: flex-end;
+}
+
+/* Nav layout */
+[dir="rtl"] .nav-inner { direction: rtl; }
+[dir="rtl"] .nav-logo { align-items: flex-end; }
+[dir="rtl"] .nav-links { direction: rtl; }
+[dir="rtl"] .nav-right { direction: rtl; }
+[dir="rtl"] .nav-links a::after {
+  left: auto;
+  right: 0;
+}
+
+/* About grid mirror */
+[dir="rtl"] .about-grid { direction: rtl; }
+[dir="rtl"] .about-text { text-align: right; }
+[dir="rtl"] .about-image-wrap { justify-self: start; }
+[dir="rtl"] .about-stats { direction: rtl; }
+[dir="rtl"] .about-stats::before {
+  background: linear-gradient(to left, var(--gold), var(--gold-dim) 60%, transparent);
+}
+[dir="rtl"] .about-image-wrap::before {
+  right: auto;
+  left: -10px;
+  border-right: none;
+  border-left: 1px solid var(--gold);
+  border-top: 1px solid var(--gold);
+}
+[dir="rtl"] .about-image-wrap::after {
+  left: auto;
+  right: -10px;
+  border-left: none;
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+}
+
+/* Contact form RTL */
+[dir="rtl"] .contact-grid { direction: rtl; }
+[dir="rtl"] .contact-office {
+  padding-left: 0;
+  padding-right: 16px;
+  border-left: none;
+  border-right: 2px solid var(--gold-dim);
+}
+[dir="rtl"] .contact-office:hover {
+  border-right-color: var(--gold);
+  border-left-color: transparent;
+  box-shadow: 4px 0 16px rgba(200,150,62,0.08);
+}
+[dir="rtl"] .social-links { padding-left: 0; padding-right: 16px; }
+[dir="rtl"] .contact-form { text-align: right; }
+[dir="rtl"] .contact-form button[type="submit"] { align-self: flex-end; }
+[dir="rtl"] .contact-form input,
+[dir="rtl"] .contact-form textarea {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Back to top mirror */
+[dir="rtl"] .back-to-top {
+  right: auto;
+  left: 32px;
+}
+@media (max-width: 900px) {
+  [dir="rtl"] .back-to-top {
+    right: auto;
+    left: 20px;
+  }
+  [dir="rtl"] .hero-buttons { justify-content: stretch; }
+}
+
+/* Section heading glow repositioned for RTL */
+[dir="rtl"] .section-heading::before {
+  left: auto;
+  right: 30%;
+  transform: translate(50%, -50%);
+}
 </style>
 </head>
 <body>
@@ -1496,19 +1644,19 @@ input, textarea { cursor: none; }
   <div class="nav-inner">
     <a href="#" class="nav-logo">
       <span class="nav-logo-main">AST<span class="logo-o">O</span>RIA</span>
-      <span class="nav-logo-sub">Hospitality</span>
-      <span class="nav-logo-tagline">Hotel & Restaurant Supplies</span>
+      <span class="nav-logo-sub" data-i18n="nav_sub">Hospitality</span>
+      <span class="nav-logo-tagline" data-i18n="nav_tagline">Hotel & Restaurant Supplies</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#brands">Partners</a></li>
-      <li><a href="#projects">Clients</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav_about">About</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#brands" data-i18n="nav_partners">Partners</a></li>
+      <li><a href="#projects" data-i18n="nav_clients">Clients</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <div class="lang-toggle"><span class="active">EN</span> | <span>AR</span></div>
-      <a href="#contact" class="btn btn-gold nav-cta" style="padding:12px 28px;font-size:13px;">Request a Catalog</a>
+      <div class="lang-toggle" id="langToggle"><span class="active" data-lang="en">EN</span> | <span data-lang="ar">AR</span></div>
+      <a href="#contact" class="btn btn-gold nav-cta" style="padding:12px 28px;font-size:13px;" data-i18n="nav_cta">Request a Catalog</a>
       <div class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </div>
@@ -1518,12 +1666,13 @@ input, textarea { cursor: none; }
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="#about" class="mobile-nav-link">About</a>
-  <a href="#services" class="mobile-nav-link">Services</a>
-  <a href="#brands" class="mobile-nav-link">Partners</a>
-  <a href="#projects" class="mobile-nav-link">Clients</a>
-  <a href="#contact" class="mobile-nav-link">Contact</a>
-  <a href="#contact" class="btn btn-gold">Request a Catalog</a>
+  <a href="#about" class="mobile-nav-link" data-i18n="nav_about">About</a>
+  <a href="#services" class="mobile-nav-link" data-i18n="nav_services">Services</a>
+  <a href="#brands" class="mobile-nav-link" data-i18n="nav_partners">Partners</a>
+  <a href="#projects" class="mobile-nav-link" data-i18n="nav_clients">Clients</a>
+  <a href="#contact" class="mobile-nav-link" data-i18n="nav_contact">Contact</a>
+  <a href="#contact" class="btn btn-gold" data-i18n="nav_cta">Request a Catalog</a>
+  <div class="lang-toggle" style="margin-top:16px;font-size:16px;"><span class="active" data-lang="en">EN</span> | <span data-lang="ar">AR</span></div>
 </div>
 
 <!-- ==================== HERO ==================== -->
@@ -1533,28 +1682,28 @@ input, textarea { cursor: none; }
   <canvas class="hero-particles" id="heroParticles"></canvas>
   <div class="hero-content">
     <div class="hero-line"></div>
-    <div class="hero-region">Oman &nbsp;&bull;&nbsp; Lebanon</div>
+    <div class="hero-region" data-i18n="hero_region">Oman &nbsp;&bull;&nbsp; Lebanon</div>
     <h1>
-      <span class="hero-h1-line"><span class="hero-h1-text">Where Elegance</span></span>
+      <span class="hero-h1-line"><span class="hero-h1-text" data-i18n="hero_h1_1">Where Elegance</span></span>
       <span class="hero-h1-divider"></span>
-      <span class="hero-h1-line"><span class="hero-h1-text">Meets the Table</span></span>
+      <span class="hero-h1-line"><span class="hero-h1-text" data-i18n="hero_h1_2">Meets the Table</span></span>
     </h1>
-    <p class="hero-sub">Curating the world's finest hospitality brands for the Gulf's most distinguished hotels and restaurants.</p>
+    <p class="hero-sub" data-i18n="hero_sub">Curating the world's finest hospitality brands for the Gulf's most distinguished hotels and restaurants.</p>
     <div class="hero-buttons">
-      <a href="#brands" class="btn btn-gold">Explore Our Brands</a>
-      <a href="#contact" class="btn btn-outline">Request a Catalog</a>
+      <a href="#brands" class="btn btn-gold" data-i18n="hero_btn_brands">Explore Our Brands</a>
+      <a href="#contact" class="btn btn-outline" data-i18n="hero_btn_catalog">Request a Catalog</a>
     </div>
     <div class="hero-line-bottom"></div>
   </div>
   <div class="scroll-indicator">
-    <span>Scroll</span>
+    <span data-i18n="scroll">Scroll</span>
     <div class="scroll-chevron"></div>
   </div>
 </section>
 
 <!-- ==================== TRUST BAR ==================== -->
 <div class="trust-bar">
-  <div class="trust-label">Trusted by the Gulf's Finest</div>
+  <div class="trust-label" data-i18n="trust_label">Trusted by the Gulf's Finest</div>
   <div class="marquee">
     <div class="marquee-inner">
       <span class="marquee-item">Four Seasons</span><span class="marquee-sep">&middot;</span>
@@ -1592,23 +1741,23 @@ input, textarea { cursor: none; }
   <div class="container">
     <div class="about-grid">
       <div class="about-text reveal">
-        <div class="gold-label">About Astoria</div>
-        <h2 class="section-heading">Your Partner in Hospitality Excellence</h2>
-        <p>For over a decade, Astoria Hospitality has been the trusted bridge between the world's finest hospitality brands and the Gulf's most prestigious hotels and restaurants. We don't simply supply products — we curate experiences.</p>
-        <p>From the porcelain that graces a Five-Star breakfast table to the crystal that elevates a gala dinner, every piece we source reflects our commitment to uncompromising quality and timeless elegance.</p>
-        <p>With offices in Muscat and Beirut, we combine deep regional expertise with global reach — ensuring that every property we serve receives not just products, but a partnership built on trust, taste, and precision.</p>
+        <div class="gold-label" data-i18n="about_label">About Astoria</div>
+        <h2 class="section-heading" data-i18n="about_heading">Your Partner in Hospitality Excellence</h2>
+        <p data-i18n="about_p1">For over a decade, Astoria Hospitality has been the trusted bridge between the world's finest hospitality brands and the Gulf's most prestigious hotels and restaurants. We don't simply supply products — we curate experiences.</p>
+        <p data-i18n="about_p2">From the porcelain that graces a Five-Star breakfast table to the crystal that elevates a gala dinner, every piece we source reflects our commitment to uncompromising quality and timeless elegance.</p>
+        <p data-i18n="about_p3">With offices in Muscat and Beirut, we combine deep regional expertise with global reach — ensuring that every property we serve receives not just products, but a partnership built on trust, taste, and precision.</p>
         <div class="about-stats">
           <div class="reveal-child">
             <div class="stat-num">25+</div>
-            <div class="stat-label">Premium Brands</div>
+            <div class="stat-label" data-i18n="stat_brands">Premium Brands</div>
           </div>
           <div class="reveal-child">
             <div class="stat-num">3,460+</div>
-            <div class="stat-label">Clients Served</div>
+            <div class="stat-label" data-i18n="stat_clients">Clients Served</div>
           </div>
           <div class="reveal-child">
             <div class="stat-num">2</div>
-            <div class="stat-label">Regional Offices</div>
+            <div class="stat-label" data-i18n="stat_offices">Regional Offices</div>
           </div>
         </div>
       </div>
@@ -1625,44 +1774,44 @@ input, textarea { cursor: none; }
 <section class="services noise-section" id="services">
   <div class="container">
     <div class="services-header reveal">
-      <div class="gold-label">Our Expertise</div>
-      <h2 class="section-heading">Everything Your Hotel Needs</h2>
+      <div class="gold-label" data-i18n="services_label">Our Expertise</div>
+      <h2 class="section-heading" data-i18n="services_heading">Everything Your Hotel Needs</h2>
     </div>
     <div class="services-grid reveal">
       <div class="service-card reveal-child">
         <span class="service-icon">&#9965;</span>
-        <h3>Tableware</h3>
-        <p>Fine china and porcelain from the world's premier manufacturers, designed for hotels that accept nothing less than extraordinary.</p>
+        <h3 data-i18n="svc_tableware_t">Tableware</h3>
+        <p data-i18n="svc_tableware_d">Fine china and porcelain from the world's premier manufacturers, designed for hotels that accept nothing less than extraordinary.</p>
       </div>
       <div class="service-card reveal-child">
         <span class="service-icon">&#127863;</span>
-        <h3>Glassware</h3>
-        <p>Crystal and glass collections for every dining occasion — from intimate tasting menus to grand banquet halls.</p>
+        <h3 data-i18n="svc_glassware_t">Glassware</h3>
+        <p data-i18n="svc_glassware_d">Crystal and glass collections for every dining occasion — from intimate tasting menus to grand banquet halls.</p>
       </div>
       <div class="service-card reveal-child">
         <span class="service-icon">&#127860;</span>
-        <h3>Flatware</h3>
-        <p>Precision-crafted cutlery that elevates every place setting, with collections ranging from classic to contemporary.</p>
+        <h3 data-i18n="svc_flatware_t">Flatware</h3>
+        <p data-i18n="svc_flatware_d">Precision-crafted cutlery that elevates every place setting, with collections ranging from classic to contemporary.</p>
       </div>
       <div class="service-card reveal-child">
         <span class="service-icon">&#127856;</span>
-        <h3>Buffet &amp; Banquet</h3>
-        <p>Statement pieces for grand buffets and banquet halls — chafing dishes, displays, and service ware that command attention.</p>
+        <h3 data-i18n="svc_buffet_t">Buffet &amp; Banquet</h3>
+        <p data-i18n="svc_buffet_d">Statement pieces for grand buffets and banquet halls — chafing dishes, displays, and service ware that command attention.</p>
       </div>
       <div class="service-card reveal-child">
         <span class="service-icon">&#9881;</span>
-        <h3>Kitchen Equipment</h3>
-        <p>Professional-grade equipment for world-class kitchens, sourced from manufacturers trusted by Michelin-starred chefs.</p>
+        <h3 data-i18n="svc_kitchen_t">Kitchen Equipment</h3>
+        <p data-i18n="svc_kitchen_d">Professional-grade equipment for world-class kitchens, sourced from manufacturers trusted by Michelin-starred chefs.</p>
       </div>
       <div class="service-card reveal-child">
         <span class="service-icon">&#10023;</span>
-        <h3>Linen &amp; Amenities</h3>
-        <p>Premium textiles and guest amenities that complete the luxury experience, from table linen to bathroom essentials.</p>
+        <h3 data-i18n="svc_linen_t">Linen &amp; Amenities</h3>
+        <p data-i18n="svc_linen_d">Premium textiles and guest amenities that complete the luxury experience, from table linen to bathroom essentials.</p>
       </div>
       <div class="service-card reveal-child">
         <span class="service-icon">&#128161;</span>
-        <h3>Furniture &amp; Lighting</h3>
-        <p>Bespoke furniture and atmospheric lighting solutions designed to transform hospitality spaces into memorable environments.</p>
+        <h3 data-i18n="svc_furniture_t">Furniture &amp; Lighting</h3>
+        <p data-i18n="svc_furniture_d">Bespoke furniture and atmospheric lighting solutions designed to transform hospitality spaces into memorable environments.</p>
       </div>
     </div>
   </div>
@@ -1672,13 +1821,13 @@ input, textarea { cursor: none; }
 <section class="brands noise-section" id="brands">
   <div class="container">
     <div class="brands-header reveal">
-      <div class="gold-label">Our Partners</div>
-      <h2 class="section-heading">Representing the World's Finest Brands</h2>
+      <div class="gold-label" data-i18n="brands_label">Our Partners</div>
+      <h2 class="section-heading" data-i18n="brands_heading">Representing the World's Finest Brands</h2>
     </div>
     <div style="text-align:center;" class="reveal">
-      <div class="brands-count">25+ International Brands</div>
+      <div class="brands-count" data-i18n="brands_count">25+ International Brands</div>
     </div>
-    <p class="brands-sub reveal">Authorized distributor of leading international hospitality brands</p>
+    <p class="brands-sub reveal" data-i18n="brands_sub">Authorized distributor of leading international hospitality brands</p>
     <div class="brands-grid reveal">
       <div class="brand-cell">Costa Nova</div>
       <div class="brand-cell">Schott</div>
@@ -1707,7 +1856,7 @@ input, textarea { cursor: none; }
       <div class="brand-cell">Ormel</div>
     </div>
     <div class="brands-cta reveal">
-      <a href="#contact" class="btn btn-outline">View Brand Portfolio</a>
+      <a href="#contact" class="btn btn-outline" data-i18n="brands_cta">View Brand Portfolio</a>
     </div>
   </div>
 </section>
@@ -1716,8 +1865,8 @@ input, textarea { cursor: none; }
 <section class="projects noise-section" id="projects">
   <div class="container">
     <div class="projects-header reveal">
-      <div class="gold-label">Portfolio</div>
-      <h2 class="section-heading">Trusted by the Region's Leading Hotels</h2>
+      <div class="gold-label" data-i18n="projects_label">Portfolio</div>
+      <h2 class="section-heading" data-i18n="projects_heading">Trusted by the Region's Leading Hotels</h2>
     </div>
     <div class="projects-grid reveal">
       <div class="project-card reveal-child" data-tilt>
@@ -1725,7 +1874,7 @@ input, textarea { cursor: none; }
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>Four Seasons</h3>
-          <p>Complete tableware &amp; glassware collection</p>
+          <p data-i18n="proj_fs_desc">Complete tableware &amp; glassware collection</p>
         </div>
       </div>
       <div class="project-card reveal-child" data-tilt>
@@ -1733,7 +1882,7 @@ input, textarea { cursor: none; }
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>Kempinski</h3>
-          <p>Full-service hospitality supply</p>
+          <p data-i18n="proj_kemp_desc">Full-service hospitality supply</p>
         </div>
       </div>
       <div class="project-card reveal-child" data-tilt>
@@ -1741,7 +1890,7 @@ input, textarea { cursor: none; }
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>InterContinental</h3>
-          <p>Bespoke dining experience curation</p>
+          <p data-i18n="proj_ic_desc">Bespoke dining experience curation</p>
         </div>
       </div>
     </div>
@@ -1757,11 +1906,11 @@ input, textarea { cursor: none; }
       <span class="showroom-corner-tr"></span>
       <span class="showroom-corner-bl"></span>
       <div class="showroom-line"></div>
-      <h2>Experience Our Collections in Person</h2>
-      <p>Visit our showrooms in Muscat and Beirut to discover the full range of products, meet our team, and find the perfect pieces for your property.</p>
+      <h2 data-i18n="showroom_heading">Experience Our Collections in Person</h2>
+      <p data-i18n="showroom_desc">Visit our showrooms in Muscat and Beirut to discover the full range of products, meet our team, and find the perfect pieces for your property.</p>
       <div class="showroom-buttons">
-        <a href="#contact" class="btn btn-gold btn-pulse">Book a Showroom Visit</a>
-        <a href="#contact" class="btn btn-outline">Request a Catalog</a>
+        <a href="#contact" class="btn btn-gold btn-pulse" data-i18n="showroom_btn_visit">Book a Showroom Visit</a>
+        <a href="#contact" class="btn btn-outline" data-i18n="showroom_btn_catalog">Request a Catalog</a>
       </div>
     </div>
   </div>
@@ -1775,13 +1924,13 @@ input, textarea { cursor: none; }
   <div class="contact-decor"></div>
   <div class="container">
     <div class="reveal" style="margin-bottom:56px;">
-      <div class="gold-label">Get in Touch</div>
-      <h2 class="section-heading">Let's Create Something Beautiful Together</h2>
+      <div class="gold-label" data-i18n="contact_label">Get in Touch</div>
+      <h2 class="section-heading" data-i18n="contact_heading">Let's Create Something Beautiful Together</h2>
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="contact-office">
-          <h3>Oman</h3>
+          <h3 data-i18n="contact_oman">Oman</h3>
           <p>
             <a href="tel:+96899326424">+968 9932 6424</a><br>
             <a href="tel:+96824137733">+968 2413 7733</a><br>
@@ -1789,7 +1938,7 @@ input, textarea { cursor: none; }
           </p>
         </div>
         <div class="contact-office">
-          <h3>Lebanon</h3>
+          <h3 data-i18n="contact_lebanon">Lebanon</h3>
           <p>
             <a href="tel:+9613078727">+961 3 078 727</a><br>
             <a href="tel:+96170310123">+961 70 310 123</a><br>
@@ -1804,21 +1953,21 @@ input, textarea { cursor: none; }
       </div>
       <form class="contact-form reveal" onsubmit="event.preventDefault();alert('Thank you! We will be in touch shortly.');">
         <div class="form-row">
-          <div class="form-field"><input type="text" placeholder="Your Name" required></div>
-          <div class="form-field"><input type="text" placeholder="Company"></div>
+          <div class="form-field"><input type="text" placeholder="Your Name" data-i18n-ph="ph_name" required></div>
+          <div class="form-field"><input type="text" placeholder="Company" data-i18n-ph="ph_company"></div>
         </div>
         <div class="form-row">
-          <div class="form-field"><input type="email" placeholder="Email Address" required></div>
-          <div class="form-field"><input type="tel" placeholder="Phone Number"></div>
+          <div class="form-field"><input type="email" placeholder="Email Address" data-i18n-ph="ph_email" required></div>
+          <div class="form-field"><input type="tel" placeholder="Phone Number" data-i18n-ph="ph_phone"></div>
         </div>
-        <div class="interest-label">I'm interested in:</div>
+        <div class="interest-label" data-i18n="contact_interest">I'm interested in:</div>
         <div class="checkbox-group">
-          <label><input type="checkbox"> Catalog</label>
-          <label><input type="checkbox"> Showroom Visit</label>
-          <label><input type="checkbox"> General Inquiry</label>
+          <label><input type="checkbox"> <span data-i18n="chk_catalog">Catalog</span></label>
+          <label><input type="checkbox"> <span data-i18n="chk_showroom">Showroom Visit</span></label>
+          <label><input type="checkbox"> <span data-i18n="chk_inquiry">General Inquiry</span></label>
         </div>
-        <div class="form-field"><textarea placeholder="Your Message" rows="5"></textarea></div>
-        <button type="submit" class="btn btn-gold" style="align-self:flex-start;">Send Message</button>
+        <div class="form-field"><textarea placeholder="Your Message" data-i18n-ph="ph_message" rows="5"></textarea></div>
+        <button type="submit" class="btn btn-gold" style="align-self:flex-start;" data-i18n="contact_submit">Send Message</button>
       </form>
     </div>
   </div>
@@ -1828,21 +1977,21 @@ input, textarea { cursor: none; }
 <footer class="footer">
   <div class="container">
     <div class="footer-logo">AST<span class="logo-o">O</span>RIA</div>
-    <div class="footer-sub">Hospitality</div>
+    <div class="footer-sub" data-i18n="nav_sub">Hospitality</div>
     <ul class="footer-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#brands">Partners</a></li>
-      <li><a href="#projects">Clients</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav_about">About</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#brands" data-i18n="nav_partners">Partners</a></li>
+      <li><a href="#projects" data-i18n="nav_clients">Clients</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
     </ul>
     <div class="footer-social">
       <a href="#">Instagram</a>
       <a href="#">Facebook</a>
       <a href="#">LinkedIn</a>
     </div>
-    <div class="footer-region">Oman &nbsp;&bull;&nbsp; Lebanon</div>
-    <div class="footer-copy">&copy; 2026 Astoria Hospitality. All rights reserved.</div>
+    <div class="footer-region" data-i18n="footer_region">Oman &nbsp;&bull;&nbsp; Lebanon</div>
+    <div class="footer-copy" data-i18n="footer_copy">&copy; 2026 Astoria Hospitality. All rights reserved.</div>
   </div>
 </footer>
 
@@ -2083,6 +2232,206 @@ input, textarea { cursor: none; }
       }
     });
   });
+
+  // ---- Language Toggle (EN/AR) ----
+  var translations = {
+    en: {
+      nav_sub: 'Hospitality',
+      nav_tagline: 'Hotel & Restaurant Supplies',
+      nav_about: 'About',
+      nav_services: 'Services',
+      nav_partners: 'Partners',
+      nav_clients: 'Clients',
+      nav_contact: 'Contact',
+      nav_cta: 'Request a Catalog',
+      hero_region: 'Oman \u00a0\u2022\u00a0 Lebanon',
+      hero_h1_1: 'Where Elegance',
+      hero_h1_2: 'Meets the Table',
+      hero_sub: "Curating the world\u2019s finest hospitality brands for the Gulf\u2019s most distinguished hotels and restaurants.",
+      hero_btn_brands: 'Explore Our Brands',
+      hero_btn_catalog: 'Request a Catalog',
+      scroll: 'Scroll',
+      trust_label: "Trusted by the Gulf\u2019s Finest",
+      about_label: 'About Astoria',
+      about_heading: 'Your Partner in Hospitality Excellence',
+      about_p1: "For over a decade, Astoria Hospitality has been the trusted bridge between the world\u2019s finest hospitality brands and the Gulf\u2019s most prestigious hotels and restaurants. We don\u2019t simply supply products \u2014 we curate experiences.",
+      about_p2: 'From the porcelain that graces a Five-Star breakfast table to the crystal that elevates a gala dinner, every piece we source reflects our commitment to uncompromising quality and timeless elegance.',
+      about_p3: 'With offices in Muscat and Beirut, we combine deep regional expertise with global reach \u2014 ensuring that every property we serve receives not just products, but a partnership built on trust, taste, and precision.',
+      stat_brands: 'Premium Brands',
+      stat_clients: 'Clients Served',
+      stat_offices: 'Regional Offices',
+      services_label: 'Our Expertise',
+      services_heading: 'Everything Your Hotel Needs',
+      svc_tableware_t: 'Tableware',
+      svc_tableware_d: "Fine china and porcelain from the world\u2019s premier manufacturers, designed for hotels that accept nothing less than extraordinary.",
+      svc_glassware_t: 'Glassware',
+      svc_glassware_d: 'Crystal and glass collections for every dining occasion \u2014 from intimate tasting menus to grand banquet halls.',
+      svc_flatware_t: 'Flatware',
+      svc_flatware_d: 'Precision-crafted cutlery that elevates every place setting, with collections ranging from classic to contemporary.',
+      svc_buffet_t: 'Buffet & Banquet',
+      svc_buffet_d: 'Statement pieces for grand buffets and banquet halls \u2014 chafing dishes, displays, and service ware that command attention.',
+      svc_kitchen_t: 'Kitchen Equipment',
+      svc_kitchen_d: 'Professional-grade equipment for world-class kitchens, sourced from manufacturers trusted by Michelin-starred chefs.',
+      svc_linen_t: 'Linen & Amenities',
+      svc_linen_d: 'Premium textiles and guest amenities that complete the luxury experience, from table linen to bathroom essentials.',
+      svc_furniture_t: 'Furniture & Lighting',
+      svc_furniture_d: 'Bespoke furniture and atmospheric lighting solutions designed to transform hospitality spaces into memorable environments.',
+      brands_label: 'Our Partners',
+      brands_heading: "Representing the World\u2019s Finest Brands",
+      brands_count: '25+ International Brands',
+      brands_sub: 'Authorized distributor of leading international hospitality brands',
+      brands_cta: 'View Brand Portfolio',
+      projects_label: 'Portfolio',
+      projects_heading: "Trusted by the Region\u2019s Leading Hotels",
+      proj_fs_desc: 'Complete tableware & glassware collection',
+      proj_kemp_desc: 'Full-service hospitality supply',
+      proj_ic_desc: 'Bespoke dining experience curation',
+      showroom_heading: 'Experience Our Collections in Person',
+      showroom_desc: 'Visit our showrooms in Muscat and Beirut to discover the full range of products, meet our team, and find the perfect pieces for your property.',
+      showroom_btn_visit: 'Book a Showroom Visit',
+      showroom_btn_catalog: 'Request a Catalog',
+      contact_label: 'Get in Touch',
+      contact_heading: "Let\u2019s Create Something Beautiful Together",
+      contact_oman: 'Oman',
+      contact_lebanon: 'Lebanon',
+      contact_interest: "I\u2019m interested in:",
+      chk_catalog: 'Catalog',
+      chk_showroom: 'Showroom Visit',
+      chk_inquiry: 'General Inquiry',
+      contact_submit: 'Send Message',
+      footer_region: 'Oman \u00a0\u2022\u00a0 Lebanon',
+      footer_copy: '\u00a9 2026 Astoria Hospitality. All rights reserved.',
+      ph_name: 'Your Name',
+      ph_company: 'Company',
+      ph_email: 'Email Address',
+      ph_phone: 'Phone Number',
+      ph_message: 'Your Message'
+    },
+    ar: {
+      nav_sub: '\u0636\u064A\u0627\u0641\u0629',
+      nav_tagline: '\u0645\u0633\u062A\u0644\u0632\u0645\u0627\u062A \u0627\u0644\u0641\u0646\u0627\u062F\u0642 \u0648\u0627\u0644\u0645\u0637\u0627\u0639\u0645',
+      nav_about: '\u0645\u0646 \u0646\u062D\u0646',
+      nav_services: '\u062E\u062F\u0645\u0627\u062A\u0646\u0627',
+      nav_partners: '\u0634\u0631\u0643\u0627\u0624\u0646\u0627',
+      nav_clients: '\u0639\u0645\u0644\u0627\u0624\u0646\u0627',
+      nav_contact: '\u0627\u062A\u0635\u0644 \u0628\u0646\u0627',
+      nav_cta: '\u0627\u0637\u0644\u0628 \u0627\u0644\u0643\u062A\u0627\u0644\u0648\u062C',
+      hero_region: '\u0639\u064F\u0645\u0627\u0646 \u00a0\u2022\u00a0 \u0644\u0628\u0646\u0627\u0646',
+      hero_h1_1: '\u062D\u064A\u062B \u062A\u0644\u062A\u0642\u064A \u0627\u0644\u0623\u0646\u0627\u0642\u0629',
+      hero_h1_2: '\u0628\u0641\u0646\u0651 \u0627\u0644\u0636\u064A\u0627\u0641\u0629',
+      hero_sub: '\u0646\u0642\u062F\u0651\u0645 \u0623\u0631\u0642\u0649 \u0627\u0644\u0639\u0644\u0627\u0645\u0627\u062A \u0627\u0644\u062A\u062C\u0627\u0631\u064A\u0629 \u0627\u0644\u0639\u0627\u0644\u0645\u064A\u0629 \u0641\u064A \u0645\u062C\u0627\u0644 \u0627\u0644\u0636\u064A\u0627\u0641\u0629 \u0644\u0623\u0631\u0641\u0639 \u0641\u0646\u0627\u062F\u0642 \u0648\u0645\u0637\u0627\u0639\u0645 \u0627\u0644\u062E\u0644\u064A\u062C.',
+      hero_btn_brands: '\u0627\u0633\u062A\u0643\u0634\u0641 \u0639\u0644\u0627\u0645\u0627\u062A\u0646\u0627',
+      hero_btn_catalog: '\u0627\u0637\u0644\u0628 \u0627\u0644\u0643\u062A\u0627\u0644\u0648\u062C',
+      scroll: '\u0627\u0633\u062A\u0643\u0634\u0641',
+      trust_label: '\u0645\u0648\u062B\u0648\u0642 \u0628\u0647 \u0645\u0646 \u0623\u0631\u0642\u0649 \u0641\u0646\u0627\u062F\u0642 \u0627\u0644\u062E\u0644\u064A\u062C',
+      about_label: '\u0639\u0646 \u0623\u0633\u062A\u0648\u0631\u064A\u0627',
+      about_heading: '\u0634\u0631\u064A\u0643\u0643\u0645 \u0641\u064A \u0627\u0644\u062A\u0645\u064A\u0651\u0632 \u0627\u0644\u0641\u0646\u062F\u0642\u064A',
+      about_p1: '\u0645\u0646\u0630 \u0623\u0643\u062B\u0631 \u0645\u0646 \u0639\u0642\u062F\u060C \u062A\u064F\u0639\u062F\u0651 \u0623\u0633\u062A\u0648\u0631\u064A\u0627 \u0644\u0644\u0636\u064A\u0627\u0641\u0629 \u0627\u0644\u062C\u0633\u0631 \u0627\u0644\u0645\u0648\u062B\u0648\u0642 \u0628\u064A\u0646 \u0623\u0631\u0642\u0649 \u0627\u0644\u0639\u0644\u0627\u0645\u0627\u062A \u0627\u0644\u062A\u062C\u0627\u0631\u064A\u0629 \u0627\u0644\u0639\u0627\u0644\u0645\u064A\u0629 \u0648\u0623\u0639\u0631\u0642 \u0641\u0646\u0627\u062F\u0642 \u0648\u0645\u0637\u0627\u0639\u0645 \u0627\u0644\u062E\u0644\u064A\u062C. \u0646\u062D\u0646 \u0644\u0627 \u0646\u0648\u0631\u0651\u062F \u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A \u0641\u062D\u0633\u0628 \u2014 \u0628\u0644 \u0646\u0635\u0646\u0639 \u062A\u062C\u0627\u0631\u0628 \u0627\u0633\u062A\u062B\u0646\u0627\u0626\u064A\u0629.',
+      about_p2: '\u0645\u0646 \u0627\u0644\u0628\u0648\u0631\u0633\u0644\u0627\u0646 \u0627\u0644\u0630\u064A \u064A\u0632\u064A\u0651\u0646 \u0645\u0648\u0627\u0626\u062F \u0627\u0644\u0625\u0641\u0637\u0627\u0631 \u0641\u064A \u0641\u0646\u0627\u062F\u0642 \u0627\u0644\u062E\u0645\u0633 \u0646\u062C\u0648\u0645\u060C \u0625\u0644\u0649 \u0627\u0644\u0643\u0631\u064A\u0633\u062A\u0627\u0644 \u0627\u0644\u0630\u064A \u064A\u0631\u062A\u0642\u064A \u0628\u0623\u0645\u0633\u064A\u0627\u062A \u0627\u0644\u0639\u0634\u0627\u0621 \u0627\u0644\u0641\u0627\u062E\u0631\u0629 \u2014 \u0643\u0644\u0651 \u0642\u0637\u0639\u0629 \u0646\u062E\u062A\u0627\u0631\u0647\u0627 \u062A\u0639\u0643\u0633 \u0627\u0644\u062A\u0632\u0627\u0645\u0646\u0627 \u0628\u0627\u0644\u062C\u0648\u062F\u0629 \u0627\u0644\u0645\u0637\u0644\u0642\u0629 \u0648\u0627\u0644\u0623\u0646\u0627\u0642\u0629 \u0627\u0644\u062E\u0627\u0644\u062F\u0629.',
+      about_p3: '\u0628\u0645\u0643\u0627\u062A\u0628 \u0641\u064A \u0645\u0633\u0642\u0637 \u0648\u0628\u064A\u0631\u0648\u062A\u060C \u0646\u062C\u0645\u0639 \u0628\u064A\u0646 \u0627\u0644\u062E\u0628\u0631\u0629 \u0627\u0644\u0625\u0642\u0644\u064A\u0645\u064A\u0629 \u0627\u0644\u0639\u0645\u064A\u0642\u0629 \u0648\u0627\u0644\u0627\u0646\u062A\u0634\u0627\u0631 \u0627\u0644\u0639\u0627\u0644\u0645\u064A \u2014 \u0644\u0646\u0636\u0645\u0646 \u0644\u0643\u0644\u0651 \u0645\u0646\u0634\u0623\u0629 \u0646\u062E\u062F\u0645\u0647\u0627 \u0634\u0631\u0627\u0643\u0629 \u0645\u0628\u0646\u064A\u0629 \u0639\u0644\u0649 \u0627\u0644\u062B\u0642\u0629 \u0648\u0627\u0644\u0630\u0648\u0642 \u0648\u0627\u0644\u062F\u0642\u0629.',
+      stat_brands: '\u0639\u0644\u0627\u0645\u0629 \u062A\u062C\u0627\u0631\u064A\u0629 \u0645\u0645\u064A\u0632\u0629',
+      stat_clients: '\u0639\u0645\u064A\u0644',
+      stat_offices: '\u0645\u0643\u062A\u0628 \u0625\u0642\u0644\u064A\u0645\u064A',
+      services_label: '\u062E\u0628\u0631\u0627\u062A\u0646\u0627',
+      services_heading: '\u0643\u0644\u0651 \u0645\u0627 \u064A\u062D\u062A\u0627\u062C\u0647 \u0641\u0646\u062F\u0642\u0643\u0645',
+      svc_tableware_t: '\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u0645\u0627\u0626\u062F\u0629',
+      svc_tableware_d: '\u0628\u0648\u0631\u0633\u0644\u0627\u0646 \u0648\u0635\u064A\u0646\u064A \u0641\u0627\u062E\u0631 \u0645\u0646 \u0623\u0639\u0631\u0642 \u0627\u0644\u0645\u0635\u0627\u0646\u0639 \u0627\u0644\u0639\u0627\u0644\u0645\u064A\u0629\u060C \u0645\u0635\u0645\u0651\u0645 \u0644\u0644\u0641\u0646\u0627\u062F\u0642 \u0627\u0644\u062A\u064A \u0644\u0627 \u062A\u0631\u0636\u0649 \u0625\u0644\u0627 \u0628\u0627\u0644\u0627\u0633\u062A\u062B\u0646\u0627\u0626\u064A.',
+      svc_glassware_t: '\u0627\u0644\u0623\u0648\u0627\u0646\u064A \u0627\u0644\u0632\u062C\u0627\u062C\u064A\u0629',
+      svc_glassware_d: '\u0645\u062C\u0645\u0648\u0639\u0627\u062A \u0643\u0631\u064A\u0633\u062A\u0627\u0644 \u0648\u0632\u062C\u0627\u062C \u0644\u0643\u0644\u0651 \u0645\u0646\u0627\u0633\u0628\u0629 \u2014 \u0645\u0646 \u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u062A\u0630\u0648\u0651\u0642 \u0627\u0644\u062D\u0635\u0631\u064A\u0629 \u0625\u0644\u0649 \u0642\u0627\u0639\u0627\u062A \u0627\u0644\u0645\u0622\u062F\u0628 \u0627\u0644\u0643\u0628\u0631\u0649.',
+      svc_flatware_t: '\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u0637\u0639\u0627\u0645',
+      svc_flatware_d: '\u0623\u062F\u0648\u0627\u062A \u0645\u0627\u0626\u062F\u0629 \u0645\u0635\u0646\u0648\u0639\u0629 \u0628\u062F\u0642\u0629 \u0645\u062A\u0646\u0627\u0647\u064A\u0629 \u062A\u0631\u062A\u0642\u064A \u0628\u0643\u0644\u0651 \u062A\u0631\u062A\u064A\u0628 \u0645\u0627\u0626\u062F\u0629\u060C \u0628\u062A\u0634\u0643\u064A\u0644\u0627\u062A \u062A\u062A\u0631\u0627\u0648\u062D \u0628\u064A\u0646 \u0627\u0644\u0643\u0644\u0627\u0633\u064A\u0643\u064A \u0648\u0627\u0644\u0639\u0635\u0631\u064A.',
+      svc_buffet_t: '\u0628\u0648\u0641\u064A\u0647\u0627\u062A \u0648\u0645\u0622\u062F\u0628',
+      svc_buffet_d: '\u0642\u0637\u0639 \u0627\u0633\u062A\u062B\u0646\u0627\u0626\u064A\u0629 \u0644\u0644\u0628\u0648\u0641\u064A\u0647\u0627\u062A \u0627\u0644\u0641\u0627\u062E\u0631\u0629 \u0648\u0642\u0627\u0639\u0627\u062A \u0627\u0644\u0645\u0622\u062F\u0628 \u2014 \u0623\u0637\u0628\u0627\u0642 \u0627\u0644\u062A\u0633\u062E\u064A\u0646 \u0648\u0627\u0644\u0639\u0631\u0636 \u0648\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u062E\u062F\u0645\u0629 \u0627\u0644\u062A\u064A \u062A\u0633\u062A\u062D\u0648\u0630 \u0639\u0644\u0649 \u0627\u0644\u0627\u0646\u062A\u0628\u0627\u0647.',
+      svc_kitchen_t: '\u0645\u0639\u062F\u0651\u0627\u062A \u0627\u0644\u0645\u0637\u0628\u062E',
+      svc_kitchen_d: '\u0645\u0639\u062F\u0651\u0627\u062A \u0627\u062D\u062A\u0631\u0627\u0641\u064A\u0629 \u0644\u0645\u0637\u0627\u0628\u062E \u0639\u0627\u0644\u0645\u064A\u0629 \u0627\u0644\u0645\u0633\u062A\u0648\u0649\u060C \u0645\u0646 \u0645\u0635\u0646\u0651\u0639\u064A\u0646 \u064A\u062B\u0642 \u0628\u0647\u0645 \u0623\u0634\u0647\u0631 \u0627\u0644\u0637\u0647\u0627\u0629 \u0627\u0644\u0639\u0627\u0644\u0645\u064A\u064A\u0646.',
+      svc_linen_t: '\u0627\u0644\u0645\u0641\u0631\u0648\u0634\u0627\u062A \u0648\u0627\u0644\u0645\u0633\u062A\u0644\u0632\u0645\u0627\u062A',
+      svc_linen_d: '\u0645\u0646\u0633\u0648\u062C\u0627\u062A \u0641\u0627\u062E\u0631\u0629 \u0648\u0645\u0633\u062A\u0644\u0632\u0645\u0627\u062A \u0636\u064A\u0648\u0641 \u062A\u064F\u0643\u0645\u0651\u0644 \u062A\u062C\u0631\u0628\u0629 \u0627\u0644\u0631\u0641\u0627\u0647\u064A\u0629\u060C \u0645\u0646 \u0645\u0641\u0627\u0631\u0634 \u0627\u0644\u0645\u0648\u0627\u0626\u062F \u0625\u0644\u0649 \u0644\u0648\u0627\u0632\u0645 \u0627\u0644\u062D\u0645\u0651\u0627\u0645.',
+      svc_furniture_t: '\u0627\u0644\u0623\u062B\u0627\u062B \u0648\u0627\u0644\u0625\u0636\u0627\u0621\u0629',
+      svc_furniture_d: '\u0623\u062B\u0627\u062B \u0645\u0635\u0645\u0651\u0645 \u062E\u0635\u064A\u0635\u064B\u0627 \u0648\u062D\u0644\u0648\u0644 \u0625\u0636\u0627\u0621\u0629 \u0631\u0627\u0642\u064A\u0629 \u0644\u062A\u062D\u0648\u064A\u0644 \u0641\u0636\u0627\u0621\u0627\u062A \u0627\u0644\u0636\u064A\u0627\u0641\u0629 \u0625\u0644\u0649 \u062A\u062C\u0627\u0631\u0628 \u0644\u0627 \u062A\u064F\u0646\u0633\u0649.',
+      brands_label: '\u0634\u0631\u0643\u0627\u0624\u0646\u0627',
+      brands_heading: '\u0646\u0645\u062B\u0651\u0644 \u0623\u0631\u0642\u0649 \u0627\u0644\u0639\u0644\u0627\u0645\u0627\u062A \u0627\u0644\u062A\u062C\u0627\u0631\u064A\u0629 \u0627\u0644\u0639\u0627\u0644\u0645\u064A\u0629',
+      brands_count: '\u0623\u0643\u062B\u0631 \u0645\u0646 25 \u0639\u0644\u0627\u0645\u0629 \u062A\u062C\u0627\u0631\u064A\u0629 \u062F\u0648\u0644\u064A\u0629',
+      brands_sub: '\u0645\u0648\u0632\u0651\u0639 \u0645\u0639\u062A\u0645\u062F \u0644\u0623\u0628\u0631\u0632 \u0627\u0644\u0639\u0644\u0627\u0645\u0627\u062A \u0627\u0644\u062A\u062C\u0627\u0631\u064A\u0629 \u0627\u0644\u062F\u0648\u0644\u064A\u0629 \u0641\u064A \u0642\u0637\u0627\u0639 \u0627\u0644\u0636\u064A\u0627\u0641\u0629',
+      brands_cta: '\u0627\u0633\u062A\u0639\u0631\u0636 \u0645\u062D\u0641\u0638\u0629 \u0627\u0644\u0639\u0644\u0627\u0645\u0627\u062A',
+      projects_label: '\u0623\u0639\u0645\u0627\u0644\u0646\u0627',
+      projects_heading: '\u0645\u0648\u062B\u0648\u0642 \u0628\u0647 \u0645\u0646 \u0623\u0628\u0631\u0632 \u0641\u0646\u0627\u062F\u0642 \u0627\u0644\u0645\u0646\u0637\u0642\u0629',
+      proj_fs_desc: '\u062A\u0634\u0643\u064A\u0644\u0629 \u0643\u0627\u0645\u0644\u0629 \u0645\u0646 \u0623\u062F\u0648\u0627\u062A \u0627\u0644\u0645\u0627\u0626\u062F\u0629 \u0648\u0627\u0644\u0623\u0648\u0627\u0646\u064A \u0627\u0644\u0632\u062C\u0627\u062C\u064A\u0629',
+      proj_kemp_desc: '\u062A\u0648\u0631\u064A\u062F \u0634\u0627\u0645\u0644 \u0644\u0645\u0633\u062A\u0644\u0632\u0645\u0627\u062A \u0627\u0644\u0636\u064A\u0627\u0641\u0629',
+      proj_ic_desc: '\u062A\u0635\u0645\u064A\u0645 \u062A\u062C\u0631\u0628\u0629 \u0637\u0639\u0627\u0645 \u062D\u0635\u0631\u064A\u0629',
+      showroom_heading: '\u0627\u0643\u062A\u0634\u0641\u0648\u0627 \u0645\u062C\u0645\u0648\u0639\u0627\u062A\u0646\u0627 \u0634\u062E\u0635\u064A\u064B\u0627',
+      showroom_desc: '\u0632\u0648\u0631\u0648\u0627 \u0635\u0627\u0644\u0627\u062A \u0627\u0644\u0639\u0631\u0636 \u0641\u064A \u0645\u0633\u0642\u0637 \u0648\u0628\u064A\u0631\u0648\u062A \u0644\u0627\u0643\u062A\u0634\u0627\u0641 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629 \u0627\u0644\u0643\u0627\u0645\u0644\u0629 \u0645\u0646 \u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A \u0627\u0644\u0641\u0627\u062E\u0631\u0629 \u0648\u0644\u0642\u0627\u0621 \u0641\u0631\u064A\u0642\u0646\u0627 \u0648\u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0642\u0637\u0639 \u0627\u0644\u0645\u062B\u0627\u0644\u064A\u0629 \u0644\u0645\u0646\u0634\u0623\u062A\u0643\u0645.',
+      showroom_btn_visit: '\u0627\u062D\u062C\u0632 \u0632\u064A\u0627\u0631\u0629 \u0644\u0635\u0627\u0644\u0629 \u0627\u0644\u0639\u0631\u0636',
+      showroom_btn_catalog: '\u0627\u0637\u0644\u0628 \u0627\u0644\u0643\u062A\u0627\u0644\u0648\u062C',
+      contact_label: '\u062A\u0648\u0627\u0635\u0644\u0648\u0627 \u0645\u0639\u0646\u0627',
+      contact_heading: '\u0644\u0646\u0635\u0646\u0639 \u0645\u0639\u064B\u0627 \u0634\u064A\u0626\u064B\u0627 \u0627\u0633\u062A\u062B\u0646\u0627\u0626\u064A\u064B\u0627',
+      contact_oman: '\u0639\u064F\u0645\u0627\u0646',
+      contact_lebanon: '\u0644\u0628\u0646\u0627\u0646',
+      contact_interest: '\u0623\u0646\u0627 \u0645\u0647\u062A\u0645\u0651 \u0628\u0640:',
+      chk_catalog: '\u0627\u0644\u0643\u062A\u0627\u0644\u0648\u062C',
+      chk_showroom: '\u0632\u064A\u0627\u0631\u0629 \u0635\u0627\u0644\u0629 \u0627\u0644\u0639\u0631\u0636',
+      chk_inquiry: '\u0627\u0633\u062A\u0641\u0633\u0627\u0631 \u0639\u0627\u0645',
+      contact_submit: '\u0623\u0631\u0633\u0644 \u0627\u0644\u0631\u0633\u0627\u0644\u0629',
+      footer_region: '\u0639\u064F\u0645\u0627\u0646 \u00a0\u2022\u00a0 \u0644\u0628\u0646\u0627\u0646',
+      footer_copy: '\u00a9 2026 \u0623\u0633\u062A\u0648\u0631\u064A\u0627 \u0644\u0644\u0636\u064A\u0627\u0641\u0629. \u062C\u0645\u064A\u0639 \u0627\u0644\u062D\u0642\u0648\u0642 \u0645\u062D\u0641\u0648\u0638\u0629.',
+      ph_name: '\u0627\u0644\u0627\u0633\u0645',
+      ph_company: '\u0627\u0633\u0645 \u0627\u0644\u0634\u0631\u0643\u0629',
+      ph_email: '\u0627\u0644\u0628\u0631\u064A\u062F \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A',
+      ph_phone: '\u0631\u0642\u0645 \u0627\u0644\u0647\u0627\u062A\u0641',
+      ph_message: '\u0631\u0633\u0627\u0644\u062A\u0643\u0645'
+    }
+  };
+
+  function setLanguage(lang) {
+    var html = document.documentElement;
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+    // Swap text content
+    var els = document.querySelectorAll('[data-i18n]');
+    els.forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+
+    // Swap placeholders
+    var phEls = document.querySelectorAll('[data-i18n-ph]');
+    phEls.forEach(function(el) {
+      var key = el.getAttribute('data-i18n-ph');
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.setAttribute('placeholder', translations[lang][key]);
+      }
+    });
+
+    // Update toggle active state (both desktop and any cloned toggles)
+    document.querySelectorAll('.lang-toggle').forEach(function(toggle) {
+      toggle.querySelectorAll('span[data-lang]').forEach(function(span) {
+        if (span.getAttribute('data-lang') === lang) {
+          span.classList.add('active');
+        } else {
+          span.classList.remove('active');
+        }
+      });
+    });
+
+    // Persist
+    try { localStorage.setItem('astoria-lang', lang); } catch(e) {}
+  }
+
+  // Wire up toggle clicks
+  document.querySelectorAll('.lang-toggle span[data-lang]').forEach(function(span) {
+    span.addEventListener('click', function() {
+      setLanguage(this.getAttribute('data-lang'));
+    });
+  });
+
+  // Load saved preference
+  var savedLang = null;
+  try { savedLang = localStorage.getItem('astoria-lang'); } catch(e) {}
+  if (savedLang === 'ar') {
+    setLanguage('ar');
+  }
 
 })();
 </script>
