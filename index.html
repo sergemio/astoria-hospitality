@@ -9,7 +9,7 @@
 <meta property="og:description" content="Curating the world's finest hospitality brands for the Gulf's most distinguished hotels. 25+ premium brands, 3,460+ clients served.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://astoriahosp.com">
-<meta property="og:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80">
+<meta property="og:image" content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=60">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -446,9 +446,10 @@ input, textarea { cursor: none; }
   transition: all 0.3s ease;
   display: block;
 }
-.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 5px); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -5px); }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+.hamburger.open span { background: var(--gold); }
 
 /* Mobile nav overlay */
 .mobile-nav {
@@ -504,7 +505,7 @@ input, textarea { cursor: none; }
 .hero-bg {
   position: absolute;
   inset: -20px;
-  background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80') center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=60&fm=webp') center/cover no-repeat;
   will-change: transform;
   animation: kenBurns 20s ease-in-out infinite alternate;
 }
@@ -1085,7 +1086,7 @@ input, textarea { cursor: none; }
 .showroom-bg {
   position: absolute;
   inset: 0;
-  background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80') center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=60&fm=webp') center/cover no-repeat;
   background-attachment: fixed;
 }
 @media (max-width: 900px) {
@@ -1389,7 +1390,7 @@ input, textarea { cursor: none; }
   .hero { min-height: 100svh; height: 100svh; }
   .hero-bg {
     inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=70');
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=50&fm=webp');
     background-color: #1a2a3a;
   }
   .hero-overlay {
@@ -1613,7 +1614,7 @@ input, textarea { cursor: none; }
       </div>
       <div class="about-image-wrap reveal" style="transition-delay:0.2s;" id="aboutImageWrap">
         <div class="about-image-frame">
-          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt="Elegant porcelain tableware" loading="lazy" id="aboutImg">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=60&fm=webp" alt="Elegant porcelain tableware" loading="lazy" id="aboutImg">
         </div>
       </div>
     </div>
@@ -1720,7 +1721,7 @@ input, textarea { cursor: none; }
     </div>
     <div class="projects-grid reveal">
       <div class="project-card reveal-child" data-tilt>
-        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80" alt="Four Seasons luxury hotel" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&q=55&fm=webp" alt="Four Seasons luxury hotel" loading="lazy">
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>Four Seasons</h3>
@@ -1728,7 +1729,7 @@ input, textarea { cursor: none; }
         </div>
       </div>
       <div class="project-card reveal-child" data-tilt>
-        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Kempinski hotel" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=55&fm=webp" alt="Kempinski hotel" loading="lazy">
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>Kempinski</h3>
@@ -1736,7 +1737,7 @@ input, textarea { cursor: none; }
         </div>
       </div>
       <div class="project-card reveal-child" data-tilt>
-        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80" alt="InterContinental hotel lobby" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=55&fm=webp" alt="InterContinental hotel lobby" loading="lazy">
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>InterContinental</h3>
