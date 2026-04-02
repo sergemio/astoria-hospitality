@@ -2046,11 +2046,13 @@ input, textarea { cursor: none; }
   if (canvas) {
     var ctx = canvas.getContext('2d');
     var particles = [];
-    // Logo area = top-left quadrant where the hero content sits
-    // We spawn ~60% of particles near that zone, rest scattered everywhere
-    var totalParticles = 45;
-    var clusterCount = 28; // concentrated near logo/content area
-    var scatterCount = totalParticles - clusterCount;
+    // --- TWO SYSTEMS ---
+    // 1) Orbiting particles: stay anchored around the logo/H1 area (never leave)
+    // 2) Ambient particles: drift freely across the full hero
+
+    var orbiters = [];
+    var orbiterCount = 18;
+    var ambientCount = 20;
 
     function resizeCanvas() {
       canvas.width = canvas.offsetWidth;
@@ -2059,29 +2061,77 @@ input, textarea { cursor: none; }
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Cluster zone: left 40% of width, top 30-70% of height (where logo + H1 sit)
-    function clusterPos(axis) {
-      // Gaussian-ish distribution using sum of randoms
-      var r = (Math.random() + Math.random() + Math.random()) / 3;
-      if (axis === 'x') return r * canvas.width * 0.5; // left half, clustered
-      return canvas.height * 0.2 + r * canvas.height * 0.55; // vertical center zone
+    // Logo anchor point: left ~18% of viewport, vertical ~45%
+    function getAnchor() {
+      return { x: canvas.width * 0.18, y: canvas.height * 0.45 };
     }
 
-    for (var i = 0; i < totalParticles; i++) {
-      var isCluster = i < clusterCount;
-      particles.push({
-        x: isCluster ? clusterPos('x') : Math.random() * canvas.width,
-        y: isCluster ? clusterPos('y') : Math.random() * canvas.height,
-        size: isCluster ? Math.random() * 3.2 + 1.2 : Math.random() * 2.8 + 0.8,
-        speedX: (Math.random() - 0.5) * (isCluster ? 0.35 : 0.5),
-        speedY: (Math.random() - 0.5) * (isCluster ? 0.25 : 0.35) - 0.1,
-        opacity: isCluster ? Math.random() * 0.55 + 0.3 : Math.random() * 0.45 + 0.15,
+    // Orbiters: each has an anchor-relative orbit (angle + radius)
+    for (var i = 0; i < orbiterCount; i++) {
+      var angle = Math.random() * Math.PI * 2;
+      var radius = 40 + Math.random() * 200; // 40-240px from anchor
+      orbiters.push({
+        angle: angle,
+        radius: radius,
+        speed: (Math.random() * 0.003 + 0.001) * (Math.random() > 0.5 ? 1 : -1), // some orbit clockwise, some counter
+        drift: Math.random() * 20 - 10, // slight vertical drift
+        driftSpeed: Math.random() * 0.005 + 0.002,
+        driftPhase: Math.random() * Math.PI * 2,
+        size: Math.random() * 3 + 1.2,
+        opacity: Math.random() * 0.5 + 0.35,
         pulse: Math.random() * Math.PI * 2
       });
     }
 
+    // Ambient: free-drifting across entire hero
+    for (var i = 0; i < ambientCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2.5 + 0.8,
+        speedX: (Math.random() - 0.5) * 0.4,
+        speedY: (Math.random() - 0.5) * 0.3 - 0.1,
+        opacity: Math.random() * 0.4 + 0.12,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+
+    function drawGoldDot(x, y, size, opacity) {
+      // Core
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(212, 169, 78, ' + opacity + ')';
+      ctx.fill();
+      // Inner glow
+      ctx.beginPath();
+      ctx.arc(x, y, size * 3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(212, 169, 78, ' + (opacity * 0.22) + ')';
+      ctx.fill();
+      // Outer glow
+      ctx.beginPath();
+      ctx.arc(x, y, size * 5.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200, 150, 62, ' + (opacity * 0.07) + ')';
+      ctx.fill();
+    }
+
     function drawParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var anchor = getAnchor();
+
+      // Draw orbiters (anchored around logo)
+      for (var i = 0; i < orbiters.length; i++) {
+        var o = orbiters[i];
+        o.angle += o.speed;
+        o.driftPhase += o.driftSpeed;
+        o.pulse += 0.018;
+        var yDrift = Math.sin(o.driftPhase) * o.drift;
+        var ox = anchor.x + Math.cos(o.angle) * o.radius;
+        var oy = anchor.y + Math.sin(o.angle) * o.radius + yDrift;
+        var oOpacity = o.opacity * (0.45 + 0.55 * Math.sin(o.pulse));
+        drawGoldDot(ox, oy, o.size, oOpacity);
+      }
+
+      // Draw ambient particles (free-drifting)
       for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
         p.x += p.speedX;
@@ -2094,23 +2144,7 @@ input, textarea { cursor: none; }
         if (p.y < -10) p.y = canvas.height + 10;
         if (p.y > canvas.height + 10) p.y = -10;
 
-        // Core particle
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(212, 169, 78, ' + currentOpacity + ')';
-        ctx.fill();
-
-        // Inner glow
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(212, 169, 78, ' + (currentOpacity * 0.25) + ')';
-        ctx.fill();
-
-        // Outer glow
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 6, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(200, 150, 62, ' + (currentOpacity * 0.08) + ')';
-        ctx.fill();
+        drawGoldDot(p.x, p.y, p.size, currentOpacity);
       }
       requestAnimationFrame(drawParticles);
     }
