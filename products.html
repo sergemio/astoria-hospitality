@@ -286,23 +286,23 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
   position: sticky;
   top: 80px;
   z-index: 100;
-  background: rgba(7,15,26,0.97);
-  backdrop-filter: blur(20px);
+  background: #0a1525;
   border-bottom: 1px solid var(--gold-dim);
-  height: var(--cat-nav-height);
+  padding: 0.55rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
+.cat-nav::-webkit-scrollbar { display: none; }
 /* Scroll offset so anchors don't hide behind fixed nav + sticky cat-nav */
 #tableware, #glassware, #flatware, #buffet, #kitchen, #linen, #furniture {
   scroll-margin-top: 140px;
 }
 .cat-nav-inner {
   max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px);
-  display: flex; align-items: center; height: 100%;
-  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  display: flex; align-items: center;
   gap: 8px;
 }
-.cat-nav-inner::-webkit-scrollbar { display: none; }
 .cat-pill {
   font-family: var(--font-body); font-size: 13px; font-weight: 400; letter-spacing: 1.5px;
   text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
@@ -317,15 +317,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
 .cat-pill.active { color: var(--gold); }
 .cat-pill.active::after { width: 100%; left: 0; }
 
-/* Edge fades for mobile scroll */
-.cat-nav-wrap { position: relative; }
-.cat-nav-wrap::before, .cat-nav-wrap::after {
-  content: ''; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none; display: none;
-}
-.cat-nav-wrap::before { left: 0; background: linear-gradient(to right, rgba(7,15,26,0.95), transparent); }
-.cat-nav-wrap::after { right: 0; background: linear-gradient(to left, rgba(7,15,26,0.95), transparent); }
 @media (max-width: 900px) {
-  .cat-nav-wrap::before, .cat-nav-wrap::after { display: block; }
   .cat-pill { font-size: 12px; padding: 16px 14px; }
 }
 
@@ -596,7 +588,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
 </section>
 
 <!-- ==================== STICKY CATEGORY NAV ==================== -->
-<div class="cat-nav cat-nav-wrap" id="catNav">
+<nav class="cat-nav" id="catNav">
   <div class="cat-nav-inner">
     <a href="#tableware" class="cat-pill active" data-target="tableware" data-i18n="cat_tableware">Tableware</a>
     <a href="#glassware" class="cat-pill" data-target="glassware" data-i18n="cat_glassware">Glassware</a>
@@ -606,7 +598,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
     <a href="#linen" class="cat-pill" data-target="linen" data-i18n="cat_linen">Linen & Amenities</a>
     <a href="#furniture" class="cat-pill" data-target="furniture" data-i18n="cat_furniture">Furniture & Lighting</a>
   </div>
-</div>
+</nav>
 
 <!-- 01 — TABLEWARE -->
 <section class="cat-section noise-section" id="tableware">
