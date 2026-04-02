@@ -70,7 +70,6 @@ body {
   font-family: var(--font-body);
   background: var(--bg-primary);
   color: var(--text-primary);
-  overflow-x: clip;
   line-height: 1.6;
   cursor: none;
 }
@@ -947,10 +946,13 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
           catPills.forEach(function(pill) {
             pill.classList.toggle('active', pill.getAttribute('data-target') === id);
           });
-          // Scroll active pill into view in the nav
+          // Scroll active pill into view in the category nav (horizontal only)
           var activePill = document.querySelector('.cat-pill.active');
           if (activePill) {
-            activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            var navInner = activePill.parentElement;
+            var pillLeft = activePill.offsetLeft - navInner.offsetLeft;
+            var pillCenter = pillLeft - (navInner.clientWidth / 2) + (activePill.offsetWidth / 2);
+            navInner.scrollTo({ left: pillCenter, behavior: 'smooth' });
           }
         }
       });
