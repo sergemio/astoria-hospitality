@@ -2055,7 +2055,7 @@ input, textarea { cursor: none; }
     var h1Orbiters = [];     // Tier 2: around the H1 heading
     var ambientCount = 25;   // Tier 3: visible background shimmer
 
-    var LOGO_COUNT = 30;     // most particles
+    var LOGO_COUNT = 25;     // most particles
     var H1_COUNT = 18;       // second most
 
     function resizeCanvas() {
@@ -2079,17 +2079,17 @@ input, textarea { cursor: none; }
     function makeOrbiter(tier) {
       var angle = Math.random() * Math.PI * 2;
       if (tier === 1) {
-        // Logo: wide horizontal spread to cover full logo text, tight vertical
+        // Logo: wide horizontal spread, subtle and slow — logo is the star
         return {
           angle: angle,
           radius: 20 + Math.random() * 140,
-          radiusX: 1.8, // stretch horizontally to cover "ASTORIA Hospitality" width
-          speed: (Math.random() * 0.004 + 0.002) * (Math.random() > 0.5 ? 1 : -1),
-          drift: Math.random() * 12 - 6,
-          driftSpeed: Math.random() * 0.006 + 0.003,
+          radiusX: 1.8,
+          speed: (Math.random() * 0.0015 + 0.0005) * (Math.random() > 0.5 ? 1 : -1),
+          drift: Math.random() * 8 - 4,
+          driftSpeed: Math.random() * 0.003 + 0.001,
           driftPhase: Math.random() * Math.PI * 2,
-          size: Math.random() * 2.8 + 1.0,
-          opacity: Math.random() * 0.5 + 0.4,
+          size: Math.random() * 2.4 + 0.8,
+          opacity: Math.random() * 0.3 + 0.2,
           pulse: Math.random() * Math.PI * 2,
           tier: 1
         };
