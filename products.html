@@ -283,10 +283,15 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
    STICKY CATEGORY NAV
    ======================================== */
 .cat-nav {
-  position: sticky; top: var(--nav-height); z-index: 999;
+  position: fixed; top: var(--nav-height); left: 0; right: 0; z-index: 999;
   background: rgba(7,15,26,0.95); backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--gold-dim);
   height: var(--cat-nav-height);
+  opacity: 0; transform: translateY(-100%); pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.cat-nav.visible {
+  opacity: 1; transform: translateY(0); pointer-events: all;
 }
 .cat-nav-inner {
   max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px);
@@ -325,6 +330,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
    CATEGORY SECTIONS
    ======================================== */
 .cat-section { padding: clamp(80px, 10vw, 140px) 0; }
+.cat-section:first-of-type { padding-top: calc(var(--cat-nav-height) + clamp(80px, 10vw, 140px)); }
 .cat-section:nth-child(odd) { background: var(--bg-primary); }
 .cat-section:nth-child(even) { background: var(--bg-secondary); }
 
@@ -887,12 +893,19 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
   }
   setTimeout(triggerHero, 2000);
 
-  // ---- Nav scroll effect ----
+  // ---- Nav scroll effect + category nav visibility ----
   var nav = document.getElementById('nav');
   var backToTop = document.getElementById('backToTop');
+  var catNav = document.getElementById('catNav');
+  var productsHero = document.querySelector('.products-hero');
+  var heroBottom = productsHero ? productsHero.offsetTop + productsHero.offsetHeight : 300;
   window.addEventListener('scroll', function() {
     if (window.scrollY > 60) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
     if (window.scrollY > window.innerHeight * 0.5) { backToTop.classList.add('visible'); } else { backToTop.classList.remove('visible'); }
+    // Show category nav once hero is scrolled past
+    if (catNav) {
+      if (window.scrollY > heroBottom - 100) { catNav.classList.add('visible'); } else { catNav.classList.remove('visible'); }
+    }
   }, { passive: true });
 
   // ---- Mobile nav ----
