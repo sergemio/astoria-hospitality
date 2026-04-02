@@ -530,6 +530,9 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
 <div class="cursor-outer" id="cursorOuter"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 
+<!-- Logo Particles -->
+<canvas id="logoParticles" style="position:fixed;top:0;left:0;width:350px;height:120px;z-index:1001;pointer-events:none;"></canvas>
+
 <!-- Back to Top -->
 <a href="#products-hero" class="back-to-top" id="backToTop" aria-label="Back to top">
   <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1101,6 +1104,67 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
   var savedLang = null;
   try { savedLang = localStorage.getItem('astoria-lang'); } catch(e) {}
   if (savedLang === 'ar') { setLanguage('ar'); }
+
+  // ---- Logo Particles (orbiting around nav logo) ----
+  var logoCanvas = document.getElementById('logoParticles');
+  if (logoCanvas && !isMobile) {
+    var lctx = logoCanvas.getContext('2d');
+    logoCanvas.width = 350;
+    logoCanvas.height = 120;
+    var logoOrbiters = [];
+    var LOGO_COUNT = 25;
+
+    for (var i = 0; i < LOGO_COUNT; i++) {
+      logoOrbiters.push({
+        angle: Math.random() * Math.PI * 2,
+        radius: 15 + Math.random() * 130,
+        radiusX: 1.8,
+        speed: (Math.random() * 0.0015 + 0.0005) * (Math.random() > 0.5 ? 1 : -1),
+        drift: Math.random() * 8 - 4,
+        driftSpeed: Math.random() * 0.003 + 0.001,
+        driftPhase: Math.random() * Math.PI * 2,
+        size: Math.random() * 2.4 + 0.8,
+        opacity: Math.random() * 0.3 + 0.2,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+
+    var logoAnchor = { x: 100, y: 50 };
+
+    function drawLogoDot(x, y, size, opacity) {
+      lctx.beginPath();
+      lctx.arc(x, y, size, 0, Math.PI * 2);
+      lctx.fillStyle = 'rgba(212, 169, 78, ' + opacity + ')';
+      lctx.fill();
+      lctx.beginPath();
+      lctx.arc(x, y, size * 3, 0, Math.PI * 2);
+      lctx.fillStyle = 'rgba(212, 169, 78, ' + (opacity * 0.22) + ')';
+      lctx.fill();
+      lctx.beginPath();
+      lctx.arc(x, y, size * 5.5, 0, Math.PI * 2);
+      lctx.fillStyle = 'rgba(200, 150, 62, ' + (opacity * 0.07) + ')';
+      lctx.fill();
+    }
+
+    function drawLogoParticles() {
+      lctx.clearRect(0, 0, 350, 120);
+      for (var i = 0; i < logoOrbiters.length; i++) {
+        var o = logoOrbiters[i];
+        o.angle += o.speed;
+        o.driftPhase += o.driftSpeed;
+        o.pulse += 0.02;
+        var yDrift = Math.sin(o.driftPhase) * o.drift;
+        var ox = logoAnchor.x + Math.cos(o.angle) * o.radius * o.radiusX;
+        var oy = logoAnchor.y + Math.sin(o.angle) * o.radius + yDrift;
+        var oOpacity = o.opacity * (0.4 + 0.6 * Math.sin(o.pulse));
+        drawLogoDot(ox, oy, o.size, oOpacity);
+      }
+      requestAnimationFrame(drawLogoParticles);
+    }
+    drawLogoParticles();
+  } else if (logoCanvas) {
+    logoCanvas.style.display = 'none';
+  }
 
 })();
 </script>
