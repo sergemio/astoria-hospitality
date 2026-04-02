@@ -283,10 +283,18 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
    STICKY CATEGORY NAV
    ======================================== */
 .cat-nav {
-  position: fixed; top: var(--nav-height); left: 0; right: 0; z-index: 999;
-  background: rgba(7,15,26,0.97); backdrop-filter: blur(20px);
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+  background: rgba(7,15,26,0.97);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--gold-dim);
   height: var(--cat-nav-height);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+/* Scroll offset so anchors don't hide behind fixed nav + sticky cat-nav */
+#tableware, #glassware, #flatware, #buffet, #kitchen, #linen, #furniture {
+  scroll-margin-top: 140px;
 }
 .cat-nav-inner {
   max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px);
@@ -325,7 +333,6 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
    CATEGORY SECTIONS
    ======================================== */
 .cat-section { padding: clamp(80px, 10vw, 140px) 0; }
-.cat-section:first-of-type { padding-top: calc(var(--cat-nav-height) + clamp(80px, 10vw, 140px)); }
 .cat-section:nth-child(odd) { background: var(--bg-primary); }
 .cat-section:nth-child(even) { background: var(--bg-secondary); }
 
@@ -588,10 +595,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
   </div>
 </section>
 
-<!-- ==================== CATEGORIES (nav + sections in one wrapper for sticky) ==================== -->
-<div id="categories-wrapper">
-
-<!-- STICKY CATEGORY NAV -->
+<!-- ==================== STICKY CATEGORY NAV ==================== -->
 <div class="cat-nav cat-nav-wrap" id="catNav">
   <div class="cat-nav-inner">
     <a href="#tableware" class="cat-pill active" data-target="tableware" data-i18n="cat_tableware">Tableware</a>
@@ -803,7 +807,6 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
   </div>
 </section>
 
-</div><!-- /categories-wrapper -->
 
 <!-- ==================== BOTTOM CTA ==================== -->
 <section class="bottom-cta noise-section">
