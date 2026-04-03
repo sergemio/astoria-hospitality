@@ -221,12 +221,13 @@ input, textarea { cursor: none; }
 .reveal-child { opacity: 0; transform: translateY(25px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
 .reveal.revealed .reveal-child { opacity: 1; transform: translateY(0); }
 .reveal.revealed .reveal-child:nth-child(1) { transition-delay: 0s; }
-.reveal.revealed .reveal-child:nth-child(2) { transition-delay: 0.1s; }
-.reveal.revealed .reveal-child:nth-child(3) { transition-delay: 0.2s; }
-.reveal.revealed .reveal-child:nth-child(4) { transition-delay: 0.25s; }
+.reveal.revealed .reveal-child:nth-child(2) { transition-delay: 0.08s; }
+.reveal.revealed .reveal-child:nth-child(3) { transition-delay: 0.16s; }
+.reveal.revealed .reveal-child:nth-child(4) { transition-delay: 0.24s; }
 .reveal.revealed .reveal-child:nth-child(5) { transition-delay: 0.3s; }
 .reveal.revealed .reveal-child:nth-child(6) { transition-delay: 0.35s; }
 .reveal.revealed .reveal-child:nth-child(7) { transition-delay: 0.4s; }
+.reveal.revealed .reveal-child:nth-child(n+8) { transition-delay: 0.45s; }
 
 /* ========================================
    BUTTONS
@@ -987,19 +988,28 @@ input, textarea { cursor: none; }
 .projects-header { text-align: center; margin-bottom: 56px; }
 .projects-header .gold-label { justify-content: center; }
 .projects-header .gold-label::before { display: none; }
+/* Carousel wrapper */
+.projects-carousel-wrap {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+.projects-carousel-wrap:active { cursor: grabbing; }
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  display: flex;
+  gap: 20px;
+  padding: 0 clamp(20px, 5vw, 60px);
+  will-change: transform;
 }
 .project-card {
   position: relative;
+  min-width: 280px;
+  width: 280px;
   aspect-ratio: 3/4;
   overflow: hidden;
   border: 1px solid transparent;
   transition: border-color 0.4s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
+  flex-shrink: 0;
 }
 .project-card:hover {
   border-color: var(--gold);
@@ -1070,8 +1080,10 @@ input, textarea { cursor: none; }
 }
 .project-card:hover p { opacity: 1; }
 @media (max-width: 700px) {
-  .projects-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
-  .project-card { aspect-ratio: 4/3; }
+  .project-card { min-width: 220px; width: 220px; }
+  .project-card h3 { font-size: 18px; }
+  .project-card p { font-size: 12px; }
+  .project-card-overlay { padding: 24px; }
 }
 
 /* ========================================
@@ -1871,33 +1883,179 @@ input, textarea { cursor: none; }
       <div class="gold-label" data-i18n="projects_label">Portfolio</div>
       <h2 class="section-heading" data-i18n="projects_heading">Trusted by the Region's Leading Hotels</h2>
     </div>
-    <div class="projects-grid reveal">
-      <div class="project-card reveal-child" data-tilt>
+  </div>
+  <div class="projects-carousel-wrap" id="projectsCarousel">
+    <div class="projects-grid" id="projectsGrid">
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&q=55&fm=webp" alt="Lancaster Eden Bay Beirut" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Lancaster Eden Bay</h3>
+          <p>Beachfront luxury, Beirut</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=400&q=55&fm=webp" alt="Phoenicia InterContinental Beirut" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Phoenicia Beirut</h3>
+          <p>Iconic 5-star landmark</p>
+        </div>
+      </div>
+      <div class="project-card">
         <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&q=55&fm=webp" alt="Four Seasons luxury hotel" loading="lazy">
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>Four Seasons</h3>
-          <p data-i18n="proj_fs_desc">Complete tableware &amp; glassware collection</p>
+          <p>Complete tableware &amp; glassware</p>
         </div>
       </div>
-      <div class="project-card reveal-child" data-tilt>
+      <div class="project-card">
         <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=55&fm=webp" alt="Kempinski hotel" loading="lazy">
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>Kempinski</h3>
-          <p data-i18n="proj_kemp_desc">Full-service hospitality supply</p>
+          <p>Full-service hospitality supply</p>
         </div>
       </div>
-      <div class="project-card reveal-child" data-tilt>
-        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=55&fm=webp" alt="InterContinental hotel lobby" loading="lazy">
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&q=55&fm=webp" alt="Movenpick Hotels &amp; Resorts" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>M&ouml;venpick</h3>
+          <p>Hotels &amp; Resorts</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&q=55&fm=webp" alt="Rotana Hotels" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Rotana</h3>
+          <p>Hotels &amp; Resorts</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=400&q=55&fm=webp" alt="Aloft Hotels" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Aloft</h3>
+          <p>Modern lifestyle hotels</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/legray.webp" alt="Le Gray Beirut" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Le Gray</h3>
+          <p>Boutique luxury, Beirut</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1455587734955-081b22074882?w=400&q=55&fm=webp" alt="Wyndham Hotels" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Wyndham</h3>
+          <p>Hotels &amp; Resorts</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1551016043-1d5fb6b27af2?w=400&q=55&fm=webp" alt="Radisson Blu" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Radisson Blu</h3>
+          <p>International hospitality supply</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&q=55&fm=webp" alt="Royal Tulip Luxury Hotels" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Royal Tulip</h3>
+          <p>Luxury hotels</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400&q=55&fm=webp" alt="Ramada International" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Ramada</h3>
+          <p>International hotels</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=55&fm=webp" alt="DoubleTree by Hilton" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>DoubleTree</h3>
+          <p>by Hilton</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=400&q=55&fm=webp" alt="MYSK Al Mouj Muscat" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>MYSK</h3>
+          <p>Al Mouj, Muscat</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1529290130-4ca3753253ae?w=400&q=55&fm=webp" alt="InterContinental Muscat" loading="lazy">
         <div class="project-card-overlay">
           <div class="gold-line"></div>
           <h3>InterContinental</h3>
-          <p data-i18n="proj_ic_desc">Bespoke dining experience curation</p>
+          <p>Muscat</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1600011689032-8b628b8a8747?w=400&q=55&fm=webp" alt="Al Bustan Palace Ritz-Carlton" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Al Bustan Palace</h3>
+          <p>A Ritz-Carlton Hotel</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/smallville.webp" alt="The Smallville Hotel Beirut" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>The Smallville</h3>
+          <p>Boutique hotel, Beirut</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=400&q=55&fm=webp" alt="Le Vendome Beirut" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Le Vend&ocirc;me</h3>
+          <p>Beirut</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1559599189-fe84dea4eb79?w=400&q=55&fm=webp" alt="Burj on Bay Hotel" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Burj on Bay</h3>
+          <p>Hotel, Lebanon</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?w=400&q=55&fm=webp" alt="Hotel Indigo" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>Hotel Indigo</h3>
+          <p>Boutique by IHG</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=55&fm=webp" alt="Petroleum Development Oman" loading="lazy">
+        <div class="project-card-overlay">
+          <div class="gold-line"></div>
+          <h3>PDO</h3>
+          <p>Petroleum Dev. Oman</p>
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- /projects-carousel-wrap -->
 </section>
 
 <!-- ==================== SHOWROOM CTA ==================== -->
@@ -2519,6 +2677,102 @@ input, textarea { cursor: none; }
   try { savedLang = localStorage.getItem('astoria-lang'); } catch(e) {}
   if (savedLang === 'ar') {
     setLanguage('ar');
+  }
+
+  // ---- Projects Carousel ----
+  var carouselWrap = document.getElementById('projectsCarousel');
+  var carouselGrid = document.getElementById('projectsGrid');
+  if (carouselWrap && carouselGrid) {
+    var scrollPos = 0;
+    var autoSpeed = 0.5; // px per frame — slow auto-scroll
+    var currentSpeed = autoSpeed;
+    var mouseInCarousel = false;
+    var carouselRect;
+    var totalWidth;
+    var viewWidth;
+
+    function measureCarousel() {
+      carouselRect = carouselWrap.getBoundingClientRect();
+      viewWidth = carouselWrap.offsetWidth;
+      // Total scrollable width = all cards + gaps
+      totalWidth = carouselGrid.scrollWidth;
+    }
+    measureCarousel();
+    window.addEventListener('resize', measureCarousel);
+
+    // Duplicate cards for infinite loop
+    var originalHTML = carouselGrid.innerHTML;
+    carouselGrid.innerHTML = originalHTML + originalHTML;
+    totalWidth = carouselGrid.scrollWidth / 2;
+
+    function animateCarousel() {
+      scrollPos += currentSpeed;
+      // Loop: when we've scrolled past the first set, jump back
+      if (scrollPos >= totalWidth) {
+        scrollPos -= totalWidth;
+      }
+      if (scrollPos < 0) {
+        scrollPos += totalWidth;
+      }
+      carouselGrid.style.transform = 'translateX(' + (-scrollPos) + 'px)';
+      requestAnimationFrame(animateCarousel);
+    }
+    animateCarousel();
+
+    // Mouse control (desktop only)
+    carouselWrap.addEventListener('mouseenter', function() {
+      mouseInCarousel = true;
+      measureCarousel();
+    });
+
+    carouselWrap.addEventListener('mouseleave', function() {
+      mouseInCarousel = false;
+      currentSpeed = autoSpeed; // resume slow auto-scroll
+    });
+
+    carouselWrap.addEventListener('mousemove', function(e) {
+      if (!mouseInCarousel) return;
+      var rect = carouselWrap.getBoundingClientRect();
+      var mouseX = e.clientX - rect.left; // mouse position within carousel
+      var center = rect.width / 2;
+      var distFromCenter = mouseX - center; // negative = left side, positive = right side
+      var normalized = distFromCenter / center; // -1 to +1
+
+      // Dead zone: center 30% → no movement
+      var deadZone = 0.15;
+      if (Math.abs(normalized) < deadZone) {
+        currentSpeed = 0;
+        return;
+      }
+
+      // Beyond dead zone: accelerate toward edges
+      // Remap: deadZone..1 → 0..1
+      var factor = (Math.abs(normalized) - deadZone) / (1 - deadZone);
+      var maxSpeed = 8; // max px per frame at the extreme edge
+      // Negative normalized = mouse on left = scroll left (show previous) = negative speed
+      // Positive normalized = mouse on right = scroll right (show next) = positive speed
+      currentSpeed = Math.sign(normalized) * factor * factor * maxSpeed; // quadratic easing
+    });
+
+    // Mobile: touch scroll
+    var touchStartX = 0;
+    var touchScrolling = false;
+    carouselWrap.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchScrolling = true;
+    }, { passive: true });
+
+    carouselWrap.addEventListener('touchmove', function(e) {
+      if (!touchScrolling) return;
+      var dx = touchStartX - e.touches[0].clientX;
+      scrollPos += dx * 1.2; // amplify touch movement slightly
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    carouselWrap.addEventListener('touchend', function() {
+      touchScrolling = false;
+      currentSpeed = autoSpeed;
+    });
   }
 
 })();
